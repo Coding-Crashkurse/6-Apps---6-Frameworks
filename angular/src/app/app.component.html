@@ -1,0 +1,12 @@
+<div class="todowrapper">
+  <div class="todocontainer">
+    <h2>Offene Todos: {{ todos.length }}</h2>
+    <ul class="todolist">
+      <li *ngFor="let todo of todos; let i = index">
+        <app-todo [todo]="todo"></app-todo>
+      </li>
+    </ul>
+    <app-addtodo (newItemEvent)="addItem($event)"></app-addtodo>
+    <app-warning *ngIf="todos.length > 3"></app-warning>
+  </div>
+</div>

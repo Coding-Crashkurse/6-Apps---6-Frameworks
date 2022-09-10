@@ -1,0 +1,19 @@
+.todowrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.todocontainer {
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+}
+
+.warning {
+  margin-top: 5px;
+  padding: 8px 5px;
+  color: white;
+  background-color: darkred;
+}

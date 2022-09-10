@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="todowrapper">
+      <div class="todocontainer">
+        <h2 id="todolength">Offene Todos: 0</h2>
+        <ul class="todolist"></ul>
+
+        <form action="">
+          <input type="text" placeholder="todo" id="todovalue" />
+          <input type="submit" id="todohandler" />
+        </form>
+        <div id="warning"></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  const todolist = document.querySelector(".todolist");
+  let todo_values = [];
+  let todoitem = document.getElementById("todovalue");
+  const todolength = document.getElementById("todolength");
+  const warning = document.getElementById("warning");
+  const btn = document.getElementById("todohandler");
+
+  const addTodo = (todo) => {
+    todolist.innerHTML = "";
+    let new_todo = { desc: todo };
+    todo_values.push(new_todo);
+  };
+
+  const renderTodo = (todo) => {
+    let litodo = document.createElement("li");
+    let atag = document.createElement("a");
+    atag.innerHTML = todo;
+    litodo.appendChild(atag);
+    todolist.appendChild(litodo);
+  };
+
+  const warnUser = () => {
+    if (todo_values.length > 3) {
+      warning.innerHTML = "";
+      let newdiv = document.createElement("div");
+      newdiv.innerHTML = "Achtung, übernimm dich nicht!";
+      newdiv.classList.add("warning");
+      warning.appendChild(newdiv);
+    }
+  };
+
+  btn.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    addTodo(todoitem.value);
+    for (item of todo_values) {
+      console.log(item);
+      renderTodo(item.desc);
+    }
+    todolength.innerHTML = `Offene Todos: ${todo_values.length}`;
+    warnUser();
+  });
+</script>
+
+<style>
+  .todowrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .todocontainer {
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+  }
+  .warning {
+    margin-top: 5px;
+    padding: 8px 5px;
+    color: white;
+    background-color: darkred;
+  }
+</style>
